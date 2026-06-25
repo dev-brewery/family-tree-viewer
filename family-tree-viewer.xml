@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>family-tree-viewer</Name>
+  <Repository>devbrewery/family-tree-viewer:latest</Repository>
+  <Registry>https://hub.docker.com/r/devbrewery/family-tree-viewer</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/dev-brewery/family-tree-viewer/issues</Support>
+  <Project>https://github.com/dev-brewery/family-tree-viewer</Project>
+  <Overview>A polished, read-only interactive family tree viewer for any Gramps Web instance. Point it at your Gramps Web API and share a clean, no-login tree with relatives - it auto-authenticates at runtime with a read-only account you supply via container variables.[br][br][b]Features:[/b][br]- Smooth infinite pan / zoom / fit canvas[br]- Breadcrumb navigation between focused people[br]- Type-ahead search with results dropdown[br]- Generation filter (show/hide tree depths)[br]- Person detail panel (dates, places, relationships, photos)[br]- Light/dark mode + mobile responsive[br]- Configurable title/branding[br][br][b]Setup:[/b] Set [b]Gramps API URL[/b] to your Gramps Web instance (e.g. http://192.168.1.10:5050), then supply a [b]read-only[/b] Gramps account in the Viewer User/Password fields. The viewer fetches a token at boot and refreshes it silently. Use a dedicated Guest/member account so private records stay hidden.</Overview>
+  <Category>Tools: Productivity:</Category>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+  <Icon>https://raw.githubusercontent.com/dev-brewery/family-tree-viewer/main/public/icon.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/dev-brewery/family-tree-viewer/main/family-tree-viewer.xml</TemplateURL>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled></DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>A running Gramps Web instance reachable from this container (see the grampsweb-aio template).</Requires>
+  <Config Name="WebUI Port" Target="80" Default="8080" Mode="tcp" Description="Host port for the viewer web interface (maps to container port 80)" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="Gramps API URL" Target="GRAMPS_API_URL" Default="" Mode="" Description="Base URL of your Gramps Web instance, e.g. http://192.168.1.10:5050 (no trailing /api). The viewer proxies /api to this host." Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Viewer User" Target="GRAMPS_VIEWER_USER" Default="" Mode="" Description="Username of a READ-ONLY Gramps account the viewer auto-authenticates with. Use a dedicated Guest/member account, not an admin." Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Viewer Password" Target="GRAMPS_VIEWER_PASS" Default="" Mode="" Description="Password for the read-only viewer account above." Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="Title / Branding" Target="VIEWER_TITLE" Default="Family Tree" Mode="" Description="Title shown in the header and browser tab (e.g. 'Brewer Family Tree')." Type="Variable" Display="always" Required="false" Mask="false">Family Tree</Config>
+</Container>

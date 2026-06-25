@@ -1,0 +1,27 @@
+# Family Tree Viewer — Standalone
+# Point at any Gramps Web API instance via GRAMPS_API_URL
+#
+# Usage:
+#   docker compose up -d
+#
+# Access: http://<host>:8080
+
+services:
+  family-tree-viewer:
+    build: .
+    container_name: family-tree-viewer
+    restart: always
+    ports:
+      - "8080:80"
+    # Put real values in a local .env file (gitignored) — see .env.example.
+    environment:
+      # Point this at your Gramps Web instance.
+      # Same Docker network -> use the container name (e.g. http://grampsweb:5000)
+      # Different machine    -> use the host IP (anonymous read is disabled, so creds are required)
+      GRAMPS_API_URL: "${GRAMPS_API_URL:-http://grampsweb:5000}"
+      # Read-only viewer account the SPA auto-authenticates with at runtime.
+      # Prefer a dedicated Guest/member account over an admin login.
+      GRAMPS_VIEWER_USER: "${GRAMPS_VIEWER_USER:-}"
+      GRAMPS_VIEWER_PASS: "${GRAMPS_VIEWER_PASS:-}"
+      # Optional branding shown in the header / tab title.
+      VIEWER_TITLE: "${VIEWER_TITLE:-Family Tree}"
