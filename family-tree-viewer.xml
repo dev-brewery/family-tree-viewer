@@ -25,5 +25,5 @@
   <Config Name="Gramps API URL" Target="GRAMPS_API_URL" Default="" Mode="" Description="Base URL of your Gramps Web instance, e.g. http://192.168.1.10:5050 (no trailing /api). The viewer proxies /api to this host." Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Viewer User" Target="GRAMPS_VIEWER_USER" Default="" Mode="" Description="Username of a READ-ONLY Gramps account the viewer auto-authenticates with. Use a dedicated Guest/member account, not an admin." Type="Variable" Display="always" Required="true" Mask="false"></Config>
   <Config Name="Viewer Password" Target="GRAMPS_VIEWER_PASS" Default="" Mode="" Description="Password for the read-only viewer account above." Type="Variable" Display="always" Required="true" Mask="true"></Config>
-  <Config Name="Title / Branding" Target="VIEWER_TITLE" Default="Family Tree" Mode="" Description="Title shown in the header and browser tab (e.g. 'Brewer Family Tree')." Type="Variable" Display="always" Required="false" Mask="false">Family Tree</Config>
+  <Config Name="Title / Branding" Target="VIEWER_TITLE" Default="Family Tree" Mode="" Description="Title shown in the header and browser tab (e.g. 'Our Family Tree')." Type="Variable" Display="always" Required="false" Mask="false">Family Tree</Config>
 </Container>

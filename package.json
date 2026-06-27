@@ -1,7 +1,7 @@
 {
   "name": "family-tree-viewer",
   "version": "0.1.0",
-  "description": "Interactive read-only family tree viewer for the Brewer family. Connects to Gramps Web API.",
+  "description": "Interactive, read-only family tree viewer for any Gramps Web instance.",
   "type": "module",
   "scripts": {
     "dev": "vite",

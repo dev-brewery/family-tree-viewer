@@ -5,7 +5,7 @@ name: docker-publish
 #   - Docker Hub (auto-enabled once DOCKERHUB_USERNAME + DOCKERHUB_TOKEN secrets exist)
 #
 # Add the Docker Hub secrets in: repo Settings > Secrets and variables > Actions
-#   DOCKERHUB_USERNAME = devbrewery
+#   DOCKERHUB_USERNAME = <your Docker Hub user/org>
 #   DOCKERHUB_TOKEN    = <a Docker Hub access token with Read/Write/Delete>
 
 on:
@@ -33,16 +33,16 @@ jobs:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Log in to GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -50,14 +50,14 @@ jobs:
 
       - name: Log in to Docker Hub
         if: ${{ env.DOCKERHUB_TOKEN != '' }}
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ env.DOCKERHUB_TOKEN }}
 
       - name: Docker metadata (tags + labels)
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: |
             ${{ env.GHCR_IMAGE }}
@@ -70,7 +70,7 @@ jobs:
             type=sha,format=short
 
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64,linux/arm64
